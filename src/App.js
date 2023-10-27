@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Modal from "./components/Modal/Modal";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  function handleButtonClick() {
+    setIsModalOpen((prev) => !prev);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleButtonClick}>Open Modal</button>
+      <Modal
+        isOpen={isModalOpen}
+        title={"Kazkoks title"}
+        onClose={() => setIsModalOpen(false)}>
+        <h1>Hello</h1>
+        <h2>World</h2>
+        <h3>React</h3>
+      </Modal>
     </div>
   );
 }
